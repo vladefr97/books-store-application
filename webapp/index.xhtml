@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<f:view>
+    <h:head>
+        <title>JSF Title</title>
+    </h:head>
+
+    <h:body>
+        <!--        TODO: перенести стили в отдельный файл-->
+        <style type="text/css">
+            .ui-datalist .ui-datalist-content {
+                border: 0 none
+            }
+
+            .ui-datalist ul {
+                padding: 0px 10px 0 20px;
+                margin: 5px 0;
+            }
+
+            .value {
+                font-weight: bold;
+            }
+
+            .ui-autocomplete-itemtip {
+                -moz-box-sizing: content-box;
+                -webkit-box-sizing: content-box;
+                box-sizing: content-box;
+            }
+
+        </style>
+
+        <h:form id="form">
+            <p:growl id="msgs" showDetail="true"/>
+
+            <h:panelGrid columns="2" cellpadding="5">
+                <p:outputLabel value="ФИО:" for="event"/>
+                <p:autoComplete id="event" value="#{mainView.fioText}"
+                                completeMethod="#{autoCompleteView.completeText}">
+                    <p:ajax event="itemSelect" listener="#{autoCompleteView.onItemSelect}"/>
+                </p:autoComplete>
+
+                <p:outputLabel for="start-date" value="Начальная дата:"/>
+                <p:calendar id="start-date" value="#{mainView.startDate}" showOn="button"/>
+
+
+                <p:outputLabel for="end-date" value="Конечная дата:"/>
+                <p:calendar id="end-date" value="#{mainView.endDate}" showOn="button"/>
+
+                <p:commandButton value="Найти" id="withIcon" update="books" action="#{mainView.onFindBtn()}"
+                                 style="margin-right:20px;"/>
+
+            </h:panelGrid>
+
+
+            <p:dataTable id="books" widgetVar="books" var="book" value="#{mainView.books}" editable="true"
+                         style="margin-bottom:20px">
+                <f:facet name="header">
+                    Информация о книгах
+                </f:facet>
+
+                <p:ajax event="rowEdit" listener="#{mainView.onRowEdit}" update=":form:msgs"/>
+                <p:ajax event="rowEditCancel" listener="#{mainView.onRowCancel}" update=":form:msgs"/>
+
+                <p:column headerText="Название" sortBy="#{book.title}">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{book.title}"/></f:facet>
+                        <f:facet name="input"><p:inputText id="modelInput" value="#{book.title}"
+                                                           style="width:100%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Дата" sortBy="#{book.date}">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{book.date}"/></f:facet>
+
+                        <f:facet name="input">
+                            <!--                            <p:inputText value="#{book.date}" style="width:100%"-->
+                            <!--                                                           label="Дата"/>-->
+                            <p:calendar id="date" value="#{book.date}" showOn="button"/>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+
+                <p:column style="width:32px">
+                    <p:rowEditor/>
+                </p:column>
+            </p:dataTable>
+
+        </h:form>
+
+
+    </h:body>
+</f:view>
+
+</html>
