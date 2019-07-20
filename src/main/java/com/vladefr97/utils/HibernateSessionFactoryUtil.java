@@ -6,6 +6,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
+/**
+ * Class representing factory pattern for getting Hibernate Session
+ */
 public class HibernateSessionFactoryUtil {
     private static SessionFactory sessionFactory;
 
@@ -13,6 +16,9 @@ public class HibernateSessionFactoryUtil {
 
     }
 
+    /**
+     * @return - SessionFactory object
+     */
     public static SessionFactory getSessionFactory() {
 
         if (sessionFactory == null) {

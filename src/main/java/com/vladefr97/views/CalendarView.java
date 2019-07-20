@@ -16,11 +16,8 @@ import java.util.List;
 public class CalendarView {
 
 
-    private Date date1;
-    private Date date2;
 
-    private List<Date> multi;
-    private List<Date> range;
+
     private List<Date> invalidDates;
     private List<Integer> invalidDays;
     private Date minDate;
@@ -55,40 +52,6 @@ public class CalendarView {
         PrimeFaces.current().executeScript("PF('dlg').show()");
     }
 
-
-    public Date getDate1() {
-        return date1;
-    }
-
-    public void setDate1(Date date1) {
-        this.date1 = date1;
-    }
-
-    public Date getDate2() {
-        return date2;
-    }
-
-    public void setDate2(Date date2) {
-        this.date2 = date2;
-    }
-
-
-
-    public List<Date> getMulti() {
-        return multi;
-    }
-
-    public void setMulti(List<Date> multi) {
-        this.multi = multi;
-    }
-
-    public List<Date> getRange() {
-        return range;
-    }
-
-    public void setRange(List<Date> range) {
-        this.range = range;
-    }
 
     public List<Date> getInvalidDates() {
         return invalidDates;
