@@ -10,8 +10,14 @@ import org.hibernate.Transaction;
 
 import java.util.List;
 
+/**
+ * Data Access Object Class for User
+ */
 public class UserDao {
 
+    /**
+     * @param user - User object to save
+     */
     public void save(User user) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
@@ -20,6 +26,9 @@ public class UserDao {
         session.close();
     }
 
+    /**
+     * @param user - User object to update
+     */
     public void update(User user) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
@@ -28,6 +37,9 @@ public class UserDao {
         session.close();
     }
 
+    /**
+     * @param user - User object to delete
+     */
     public void delete(User user) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
@@ -36,6 +48,10 @@ public class UserDao {
         session.close();
     }
 
+    /**
+     * @param id - id of the user which need to be found
+     * @return - Found User
+     */
     public User findById(int id) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         User user = (User) session.get(User.class, id);
@@ -44,6 +60,10 @@ public class UserDao {
     }
 
 
+    /**
+     * @param id - id for books user
+     * @return - Found books
+     */
     public List<Book> findBooksById(int id) {
 
         String queryStr = "FROM Book Where user = " + id;
@@ -55,6 +75,9 @@ public class UserDao {
     }
 
 
+    /**
+     * @return - List of all users
+     */
     public List<User> findAll() {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
 
@@ -64,6 +87,10 @@ public class UserDao {
         return users;
     }
 
+    /**
+     * @param fio - User's surname, name and patronymic
+     * @return - Found user
+     */
     public List<User> findUserByFIO(String fio) {
         String queryStr = "FROM User Where fio = '" + fio + "'";
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();

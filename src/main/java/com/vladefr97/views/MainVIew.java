@@ -91,6 +91,10 @@ public class MainVIew implements Serializable {
     public void onRowEdit(RowEditEvent event) {
         try {
             Book book = ((Book) event.getObject());
+            SimpleDateFormat sdf =
+                    new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+
             bookService.updateBook(book);
             FacesMessage msg = new FacesMessage("Данные измнены ", book.getTitle());
             FacesContext.getCurrentInstance().addMessage("", msg);

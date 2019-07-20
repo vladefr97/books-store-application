@@ -2,6 +2,9 @@ package com.vladefr97.models;
 
 import javax.persistence.*;
 
+/**
+ * Class representing User entity
+ */
 @Entity
 @Table(name = "user")
 public class User {

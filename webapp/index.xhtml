@@ -80,10 +80,10 @@
                     <p:cellEditor>
                         <f:facet name="output"><h:outputText value="#{book.date}"/></f:facet>
 
-                        <f:facet name="input">
+                        <f:facet name="input" pattern="yyyy-MM-dd HH:mm:ss">
                             <!--                            <p:inputText value="#{book.date}" style="width:100%"-->
                             <!--                                                           label="Дата"/>-->
-                            <p:calendar id="date" value="#{book.date}" showOn="button"/>
+                            <p:calendar id="date" value="#{book.date}" showOn="button" pattern="yyyy-MM-dd HH:mm:ss"/>
                         </f:facet>
                     </p:cellEditor>
                 </p:column>

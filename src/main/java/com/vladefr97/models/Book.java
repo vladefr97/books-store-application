@@ -3,6 +3,9 @@ package com.vladefr97.models;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * Class representing Book entity
+ */
 @Entity
 @Table(name = "book")
 public class Book {
@@ -12,15 +15,15 @@ public class Book {
     }
 
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "title")
     private String title;
 
-    @Column(name="date")
-    private String date;
+    @Column(name = "date")
+    private Date date;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -34,12 +37,12 @@ public class Book {
         return id;
     }
 
-    public Book(String title, String date) {
+    public Book(String title, Date date) {
         this.title = title;
         this.date = date;
     }
 
-    public Book(String title, String date, User user) {
+    public Book(String title, Date date, User user) {
         this.title = title;
         this.date = date;
         this.user = user;
@@ -53,11 +56,11 @@ public class Book {
         this.title = title;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
